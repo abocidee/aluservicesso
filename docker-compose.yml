@@ -1,0 +1,9 @@
+version: '3'
+services:
+  alu-sso:
+    build: /Users/abocide/Documents/GitHub/itoken/alu-service-sso 
+    container_name: alu-service-sso
+    ports:
+      - 8503:8503
+
+

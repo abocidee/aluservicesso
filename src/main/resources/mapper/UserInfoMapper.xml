@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.alu.itoken.service.sso.mapper.UserInfoMapper" >
+  <select id="findRoleByUid" resultType="com.alu.itoken.service.sso.entity.UUserRole" >
+   SELECT 
+   a.id ,
+   a.name,
+   a.type,
+   b.uid,
+   b.rid 
+   FROM 
+   world.u_role
+   a  inner join u_user_role  b
+   on a.id=b.uid  where b.uid=#{uid}
+  </select>
+  
+  <select id="findPermissionByUid" resultType="com.alu.itoken.service.sso.entity.UPermission" >
+     select
+   a.id,a.url,a.name
+   FROM 
+   world.u_permission
+   a  inner join u_role_permission b
+   on a.id=b.pid  where b.rid =(select rid from u_user_role where uid=#{uid} limit 1)
+   
+  </select>
+
+
+    <select id="login" resultType="java.lang.String">
+        select
+        name
+        from User where email=#{username} and password=#{md5HashPass}
+    </select>
+
+    <select id="loginWithPhone" resultType="java.lang.String">
+        select
+        name
+        from User where phone=#{username} and password=#{md5HashPass}
+    </select>
+
+    <select id="getUserByEmail" resultType="com.alu.itoken.service.sso.entity.User">
+        select * from user where email=#{username}
+    </select>
+    <select id="getUserByPhone" resultType="com.alu.itoken.service.sso.entity.User">
+        select * from user where phone=#{username}
+    </select>
+</mapper>

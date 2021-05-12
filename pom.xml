@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.alu</groupId>
+		<artifactId>itoken-dependencies</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../itoken-dependencies/pom.xml</relativePath>
+	</parent>
+	<artifactId>alu-service-sso</artifactId>
+	<packaging>jar</packaging>
+	<name>alu-service-sso</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.fasterxml.uuid</groupId>
+			<artifactId>java-uuid-generator</artifactId>
+			<version>3.1.3</version>
+		</dependency>
+		<!-- <dependency> <groupId>com.alu</groupId> <artifactId>itoken-common-service</artifactId> 
+			<version>${project.parent.version}</version> </dependency> -->
+		<!-- <dependency> <groupId>com.alu</groupId> <artifactId>itoken-common-web</artifactId> 
+			<version>${project.parent.version}</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.58</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>1.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-ehcache</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+		</dependency> -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.16</version>
+		</dependency>
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.20</version>
+		</dependency>
+			<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+		</dependency>
+		<!-- <dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+		</dependency> -->
+
+		<!--信息显示服务 begin -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<!--admin和jolokia一起 -->
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jolokia</groupId>
+			<artifactId>jolokia-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+		</dependency>
+		
+		<dependency>
+      	  <groupId>org.springframework.boot</groupId>
+      	  <artifactId>spring-boot-starter-data-redis</artifactId>
+      	</dependency>
+		<!--信息显示服务 end -->
+		<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+</dependency>
+	<dependency>
+  		<groupId>org.springframework.cloud</groupId>
+  		<artifactId>spring-cloud-starter-openfeign</artifactId>
+  	    </dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-maven-plugin -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>com.alu.itoken.service.sso.ServiceSsoApplication</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
+
+</project>
