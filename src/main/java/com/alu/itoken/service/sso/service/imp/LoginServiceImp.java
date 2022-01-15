@@ -68,7 +68,7 @@ public class LoginServiceImp extends ServiceImpl<UserInfoMapper, User> implement
 			User user = null;
 			String json =redisService.getInfo(username);
 			if(json==null) {
-				user = getUserByPhone(username);
+				user = getUserByEmail(username);
 				try {
 					redisService.put(username, JSON.toJSONString(user), 60*60*24);
 					//redisService.putB(User.class.getName(),username,user.toString());
@@ -114,6 +114,11 @@ public class LoginServiceImp extends ServiceImpl<UserInfoMapper, User> implement
 	@Override
 	public User getUserByPhone(String username) {
 		return userInfoMapper.getUserByPhone(username);
+	}
+
+	@Override
+	public Boolean isEmailExist(String emailOrPhone) {
+		return userInfoMapper.isEmailExist(emailOrPhone);
 	}
 }
 

@@ -17,6 +17,9 @@ import com.alu.itoken.service.sso.utils.NoUtil;
 import com.alu.itoken.service.sso.utils.ValidateUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +34,15 @@ import com.alu.itoken.service.sso.utils.MapperUtils;
 @Controller
 @CrossOrigin(origins = "*" ,allowedHeaders = "*")
 public class LoginController {
-    
+	@Value("${spring.mail.username}")
+	private String from;
 	@Autowired
 	private RedisService redisService;
 
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private JavaMailSender javaMailSender;
 
 	private void validateCookieValue(String value) {
         int start = 0;
@@ -112,6 +118,16 @@ public class LoginController {
 
 		String name = userMap.get("name");
 		String emailOrPhone = userMap.get("emailOrPhone");
+		//判断邮箱是否存在
+	    Boolean isEmailExist =	loginService.isEmailExist(emailOrPhone);
+	    if(!(null==isEmailExist)) {
+	    	return R.EnumResults(ResultCodeEnum.EMAIL_EXISTED);
+		}
+		String value = redisService.getInfo(emailOrPhone);
+		String verifyCode = value.substring(1,value.length()-1);
+		if(!verifyCode.equals(userMap.get("verifyCode"))){
+			return R.EnumResults(ResultCodeEnum.VERIFY_CODE_ERROR);
+		}
 
 		MessageDigest md = null;
 		StringBuilder sb = new StringBuilder(32);
@@ -131,5 +147,26 @@ public class LoginController {
 		loginService.save(user);
 
 		return R.ok().message("添加成功");
+	}
+
+    //发送验证码
+	@PostMapping("/user/verifyCode")
+	@ResponseBody
+	public R sendverifyCode(@RequestBody Map<String,String> userMap,HttpServletRequest request){
+		UUID uuid = UUID.randomUUID();
+		String verifyCode = uuid.toString().substring(0, 6);
+		String emailOrPhone = userMap.get("emailOrPhone");
+		redisService.put(emailOrPhone,verifyCode,90);
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setFrom(from); // 邮件发送者
+		message.setTo(emailOrPhone); // 邮件接受者
+		message.setSubject("派特蜜，请验证你的邮箱"); // 主题
+		message.setText("你的验证码为："+ verifyCode); // 内容
+
+
+		//发送邮件
+		javaMailSender.send(message);
+		return R.ok();
+
 	}
 }

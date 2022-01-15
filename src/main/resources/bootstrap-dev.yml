@@ -1,8 +1,0 @@
-spring:
-  cloud:
-    config:
-      url: 127.0.0.1:8888
-      name: alu-service-sso
-      label: master
-      profile: dev
-      

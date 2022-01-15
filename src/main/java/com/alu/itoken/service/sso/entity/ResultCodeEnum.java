@@ -11,8 +11,9 @@ public enum ResultCodeEnum {
     JSON_PARSE_ERROR(false, 21002, "json解析错误"),
     PARAM_ERROR(false, 21003, "参数不正确"),
     FILE_UPLOAD_ERROR(false, 21004, "文件上传错误"),
-    EXCEL_DATA_IMPORT_ERROR(false, 21005, "文件导入错误");
-
+    EXCEL_DATA_IMPORT_ERROR(false, 21005, "文件导入错误"),
+    VERIFY_CODE_ERROR(true, 21006, "验证码错误"),
+    EMAIL_EXISTED(true,21007,"邮箱已存在");
     private Boolean success;
     private Integer code;
     private String message;

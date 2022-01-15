@@ -16,5 +16,6 @@ public interface LoginService extends IService<User> {
     User getUserByEmail(String username);
 
     User getUserByPhone(String username);
-	
+
+    Boolean isEmailExist(String emailOrPhone);
 }

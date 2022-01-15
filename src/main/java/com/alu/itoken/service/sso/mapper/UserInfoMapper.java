@@ -9,6 +9,7 @@ import com.alu.itoken.service.sso.entity.UPermission;
 import com.alu.itoken.service.sso.entity.UUserRole;
 import com.alu.itoken.service.sso.entity.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
 
 public interface UserInfoMapper extends BaseMapper<User> {
 	
@@ -23,4 +24,7 @@ public interface UserInfoMapper extends BaseMapper<User> {
 	User getUserByEmail(String username);
 
 	User getUserByPhone(String username);
+
+	@Select("select 1 from user where email = #{emailOrPhone}")
+    Boolean isEmailExist(String emailOrPhone);
 }
