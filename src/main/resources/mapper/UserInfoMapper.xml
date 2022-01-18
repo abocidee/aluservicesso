@@ -28,13 +28,13 @@
     <select id="login" resultType="java.lang.String">
         select
         name
-        from User where email=#{username} and password=#{md5HashPass}
+        from user where email=#{username} and password=#{md5HashPass}
     </select>
 
     <select id="loginWithPhone" resultType="java.lang.String">
         select
         name
-        from User where phone=#{username} and password=#{md5HashPass}
+        from user where phone=#{username} and password=#{md5HashPass}
     </select>
 
     <select id="getUserByEmail" resultType="com.alu.itoken.service.sso.entity.User">
