@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.alu.itoken.service.sso.config.MD5Util;
 import com.alu.itoken.service.sso.entity.*;
 import com.alu.itoken.service.sso.utils.NoUtil;
 import com.alu.itoken.service.sso.utils.ValidateUtil;
@@ -69,7 +70,8 @@ public class LoginController {
 	public R loginvu(@RequestBody Map map ,HttpServletRequest request,HttpServletResponse response) {
 		String username =(String)map.get("username");
 		String password = (String)map.get("password");
-		String s = password.substring(2);
+		String s = MD5Util.md5(password);
+		//String s = password.substring(2);
 		boolean flag = false;
 		User user =null;
 		String token = UUID.randomUUID().toString();
@@ -132,7 +134,8 @@ public class LoginController {
 		MessageDigest md = null;
 		StringBuilder sb = new StringBuilder(32);
 		String passWord = userMap.get("password");
-		String s =passWord.substring(2);
+		String s = MD5Util.md5(passWord);
+		//String s =passWord.substring(2);
 		User user = new User();
 		user.setUserNo(NoUtil.generateUserNo());
 		user.setPassword(s);
