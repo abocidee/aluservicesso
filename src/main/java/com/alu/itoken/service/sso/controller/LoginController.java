@@ -135,7 +135,6 @@ public class LoginController {
 		StringBuilder sb = new StringBuilder(32);
 		String passWord = userMap.get("password");
 		String s = MD5Util.md5(passWord);
-		//String s =passWord.substring(2);
 		User user = new User();
 		user.setUserNo(NoUtil.generateUserNo());
 		user.setPassword(s);
