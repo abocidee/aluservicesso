@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName(value = "User")
+@TableName(value = "user")
 public class User {
     @TableId(type=IdType.ID_WORKER_STR)
     private String id;
