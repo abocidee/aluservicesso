@@ -2,9 +2,9 @@ spring:
   application:
     name: alu-service-sso
   datasource:
-    username: root
-    password: Lly486597
-    url: jdbc:mysql://127.0.0.1:3308/user?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    username: aluba
+    password: Lly486598
+    url: jdbc:mysql://127.0.0.1:3306/user?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     #type: com.alibaba.druid.pool.DruidDataSource
     # 下面为连接池的补充设置，应用到上面所有数据源中

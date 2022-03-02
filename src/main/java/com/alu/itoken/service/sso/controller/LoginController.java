@@ -33,7 +33,7 @@ import com.alu.itoken.service.sso.utils.MapperUtils;
 
 
 @Controller
-@CrossOrigin(origins = "*" ,allowedHeaders = "*")
+//@CrossOrigin(origins = "*" ,allowedHeaders = "*")
 public class LoginController {
 	@Value("${spring.mail.username}")
 	private String from;
